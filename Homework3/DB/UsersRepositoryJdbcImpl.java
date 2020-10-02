@@ -11,7 +11,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     private Connection connection;
 
     private static final String SQL_SELECT_ALL_FROM_DRIVER = "select * from driver";
-    private static final String SQL_SELECT_USERS_BY_AGE = "select * from driver where age =?" ;
+    private static final String SQL_SELECT_USERS_BY_AGE =  SQL_SELECT_ALL_FROM_DRIVER + " where age =?" ;
 
     public UsersRepositoryJdbcImpl(Connection connection) {
         this.connection = connection;
@@ -21,7 +21,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     public List<User> findAllByAge(Integer age) {
         try {
             PreparedStatement statement = connection.prepareStatement(SQL_SELECT_USERS_BY_AGE);
-            statement.setInt(1,age);
+                                            statement.setInt(1,age);
 
             ResultSet resultSet = statement.executeQuery();
 
